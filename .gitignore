@@ -69,9 +69,6 @@ coverage.xml
 # Archivos estáticos recolectados
 staticfiles/
 
-# Archivos de medios subidos por usuarios
-media/
-
 # Archivos de entorno
 .env
 .env.production
