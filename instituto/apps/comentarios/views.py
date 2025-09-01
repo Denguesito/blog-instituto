@@ -18,7 +18,7 @@ class AgregarComentarioView(CreateView):
 
     def get_success_url(self):
         # Redirigir a la vista de detalle del artículo después de agregar el comentario
-        return reverse_lazy('emprendimientos:detalle_articulo', kwargs={'pk': self.kwargs['articulo_id']})
+        return reverse_lazy('blog:detalle_articulo', kwargs={'pk': self.kwargs['articulo_id']})
     
 class ComentarioUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Comentario
@@ -34,7 +34,7 @@ class ComentarioUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 
     def get_success_url(self):
-        return reverse_lazy('emprendimientos:detalle_articulo', kwargs={'pk': self.object.articulo.pk})
+        return reverse_lazy('blog:detalle_articulo', kwargs={'pk': self.object.articulo.pk})
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -54,4 +54,4 @@ class ComentarioDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
     def get_success_url(self):
-        return reverse_lazy('emprendimientos:detalle_articulo', kwargs={'pk': self.object.articulo.pk})
+        return reverse_lazy('blog:detalle_articulo', kwargs={'pk': self.object.articulo.pk})

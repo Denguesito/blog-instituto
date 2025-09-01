@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 class ArticuloListView(ListView):
     model = Articulo
-    template_name = 'emprendimientos/lista_articulos.html'
+    template_name = 'blog/lista_articulos.html'
     context_object_name = 'articulos'
 
     def get_queryset(self):
@@ -39,7 +39,7 @@ class ArticuloListView(ListView):
 
 class ArticuloDetailView(DetailView):
     model = Articulo
-    template_name = 'emprendimientos/detalle_articulo.html'
+    template_name = 'blog/detalle_articulo.html'
     context_object_name = 'articulo'
 
     def get_object(self):
@@ -68,8 +68,8 @@ class ArticuloDetailView(DetailView):
 class ArticuloCreateView(LoginRequiredMixin, CreateView):
     model = Articulo
     form_class = ArticuloForm
-    template_name = 'emprendimientos/crear_articulo.html'
-    success_url = reverse_lazy('emprendimientos:lista_articulos')
+    template_name = 'blog/crear_articulo.html'
+    success_url = reverse_lazy('blog:lista_articulos')
 
     def form_valid(self, form):
         form.instance.autor = self.request.user
@@ -83,8 +83,8 @@ class ArticuloCreateView(LoginRequiredMixin, CreateView):
 class ArticuloUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Articulo
     form_class = ArticuloForm
-    template_name = 'emprendimientos/editar_articulo.html'
-    success_url = reverse_lazy('emprendimientos:lista_articulos')
+    template_name = 'blog/editar_articulo.html'
+    success_url = reverse_lazy('blog:lista_articulos')
 
     def form_valid(self, form):
         response = super().form_valid(form)
@@ -102,8 +102,8 @@ class ArticuloUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class ArticuloDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Articulo
-    template_name = 'emprendimientos/eliminar_articulo.html'
-    success_url = reverse_lazy('emprendimientos:lista_articulos')
+    template_name = 'blog/eliminar_articulo.html'
+    success_url = reverse_lazy('blog:lista_articulos')
 
     def test_func(self):
         articulo = self.get_object()
