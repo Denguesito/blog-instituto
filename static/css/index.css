@@ -1,0 +1,108 @@
+.page-title {
+    text-align: center;
+    margin: 40px 0;
+    font-size: 2.5rem; 
+}
+
+/*Seccion de caracteristicas */
+
+.feature {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    padding: 0 20px;
+}
+
+/*Cada bloque de imagenes + texto */
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+.feature-item2 {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex-direction: row-reverse;
+}
+.feature-item img {
+    width: 50%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.feature-item2 img {
+    width: 50%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/*Textos*/
+
+.feature-text {
+    width: 50%;
+}
+
+.feature-text h2 {
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+}
+
+.feature-text p {
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+}
+
+/* texto a la derecha*/
+
+.feature-text.rigth {
+   order: 2;
+   text-align: left;
+}
+
+/* text a la izquierda */
+
+.feature-text.left {
+    order: 1;
+    text-align: right;
+}
+
+/*para las imagenes si estan de lado derecho o izquierdo*/
+
+.feature-text.rigth + img {
+    order: 1;
+}
+
+.feature-text.left + img {
+    order: 2;
+}
+
+@media(max-width: 768px){
+    .feature-item{
+        flex-direction: column;
+    }
+
+    .feature-item2 {
+        flex-direction: column;
+    }
+
+    .feature-text{
+        width: 100%;
+        text-align: center !important;
+    }
+
+    .feature-item
+
+    .feature-item img {
+        width: 100%;
+    }
+
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .feature-text h2 {
+        font-size: 1.5rem;
+    }
+}

@@ -1,9 +1,54 @@
-{% extends "base.html" %}
-
-{% load static %}
-
+{% extends "base.html" %} 
+{% load static %} 
 {% block contenido %}
+<h2 class="page-title">
+  Blog destinado a compartir posteos de los alumnos de el instituto
+</h2>
+<p>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, eos dolor! Quas
+  eos error perferendis est iste repudiandae sint maxime, animi aperiam
+  recusandae libero dolorem, nihil fugit. Est, beatae minus!
+</p>
 
+<section class="feature">
+  <div class="feature-item">
+    <img src="{% static 'img/prueva1.png' %}" alt="imgen 1" />
+    <div class="feature-text right">
+      <h2>Primer bloque</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+        libero iusto quasi voluptate debitis aspernatur veniam doloremque, ipsa
+        qui ipsum laudantium, suscipit odio laboriosam praesentium! Magni
+        molestiae cumque pariatur delectus.
+      </p>
+    </div>
+  </div>
 
+  <div class="feature-item2">
+    <img src="{% static 'img/prueva2.webp' %}" alt="imgen 2" />
+    <div class="feature-text left">
+      <h2>Primer bloque</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+        libero iusto quasi voluptate debitis aspernatur veniam doloremque, ipsa
+        qui ipsum laudantium, suscipit odio laboriosam praesentium! Magni
+        molestiae cumque pariatur delectus.
+      </p>
+    </div>
+  </div>
+
+  <div class="feature-item">
+    <img src="{% static 'img/prueva3.jpg' %}" alt="imgen 3" />
+    <div class="feature-text right">
+      <h2>Primer bloque</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+        libero iusto quasi voluptate debitis aspernatur veniam doloremque, ipsa
+        qui ipsum laudantium, suscipit odio laboriosam praesentium! Magni
+        molestiae cumque pariatur delectus.
+      </p>
+    </div>
+  </div>
+</section>
 
 {% endblock contenido %}
