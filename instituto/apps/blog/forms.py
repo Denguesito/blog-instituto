@@ -1,5 +1,7 @@
 from django import forms
 from .models import Articulo, ImagenArticulo
+from django.core.exceptions import ValidationError
+
 
 # Widget custom para permitir múltiples archivos
 class MultipleFileInput(forms.ClearableFileInput):
@@ -25,3 +27,18 @@ class ArticuloForm(forms.ModelForm):
             }),
         }
 
+    def clean_imagenes(self):
+        """Validación de las imágenes subidas"""
+        imagenes = self.files.getlist('imagenes')
+        max_size = 5 * 1024 * 1024  # 5MB
+
+        for img in imagenes:
+            # Validar extensión
+            if not img.content_type in ['image/jpeg', 'image/png', 'image/gif', 'image/webp']:
+                raise ValidationError(f"El archivo {img.name} no es un tipo de imagen válido.")
+
+            # Validar tamaño
+            if img.size > max_size:
+                raise ValidationError(f"El archivo {img.name} supera el tamaño máximo de 5MB.")
+
+        return imagenes

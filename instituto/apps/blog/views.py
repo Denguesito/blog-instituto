@@ -11,9 +11,14 @@ class ArticuloListView(ListView):
     model = Articulo
     template_name = 'blog/lista_articulos.html'
     context_object_name = 'articulos'
+    paginate_by = 2  # 👈 Paginación (2 artículos por página)
 
     def get_queryset(self):
         queryset = super().get_queryset()
+
+        # 👇 Optimización de queries
+        queryset = queryset.select_related("categoria", "autor").prefetch_related("imagenes")
+
         categoria_id = self.request.GET.get('categoria')
         ordenar_por = self.request.GET.get('ordenar_por')
 
@@ -48,9 +53,14 @@ class ArticuloDetailView(DetailView):
         articulo.save(update_fields=['visitas'])
         return articulo
 
+    def get_queryset(self):
+        # 👇 Optimización de queries en detalle
+        return super().get_queryset().select_related("categoria", "autor").prefetch_related("imagenes")
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['comentarios'] = Comentario.objects.filter(articulo=self.object)
+        # 👇 Prefetch de comentarios para no hacer consultas por cada render
+        context['comentarios'] = Comentario.objects.filter(articulo=self.object).select_related("autor")
         return context
 
     def post(self, request, *args, **kwargs):
@@ -88,16 +98,12 @@ class ArticuloUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        # Agregar nuevas imágenes si el usuario sube más
         for archivo in self.request.FILES.getlist('imagenes'):
             ImagenArticulo.objects.create(articulo=self.object, imagen=archivo)
         return response
 
     def test_func(self):
-        articulo = self.get_object()
-        return (self.request.user == articulo.autor or
-                self.request.user.is_superuser or
-                self.request.user.is_staff)
+        return self.get_object().puede_editar(self.request.user)
 
 
 class ArticuloDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
@@ -106,10 +112,7 @@ class ArticuloDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     success_url = reverse_lazy('blog:lista_articulos')
 
     def test_func(self):
-        articulo = self.get_object()
-        return (self.request.user == articulo.autor or
-                self.request.user.is_superuser or
-                self.request.user.is_staff)
+        return self.get_object().puede_editar(self.request.user)
 
 
 class PaginaPrincipalView(TemplateView):
