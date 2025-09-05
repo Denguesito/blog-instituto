@@ -7,5 +7,7 @@ class Usuario(AbstractUser):
     avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
 
     def __str__(self):
-        return f"{self.username} ({self.email})"
+        if self.first_name or self.last_name:
+            return f"{self.first_name} {self.last_name}".strip()
+        return self.username
 
