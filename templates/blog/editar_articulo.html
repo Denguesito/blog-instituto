@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+Editar artículo
+{% endblock titulo %}
+
+{% block contenido %}
+<h2>Editar artículo</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    {# Renderiza los campos del formulario #}
+    {{ form.as_p }}
+
+    {# Campo para subir nuevas imágenes (opcionales) #}
+    <p>
+        <label for="id_imagenes">Agregar nuevas imágenes:</label>
+        <input type="file" name="imagenes" id="id_imagenes" multiple>
+    </p>
+
+    {# Mostrar imágenes actuales del artículo #}
+    {% if object.imagenes.all %}
+        <h3>Imágenes actuales:</h3>
+        <div>
+            {% for imagen in object.imagenes.all %}
+                <img src="{{ imagen.imagen.url }}" alt="{{ object.titulo }}" style="max-width:200px; margin:5px;">
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <button type="submit">Guardar cambios</button>
+    <a href="{% url 'blog:lista_articulos' %}">Cancelar</a>
+</form>
+{% endblock contenido %}

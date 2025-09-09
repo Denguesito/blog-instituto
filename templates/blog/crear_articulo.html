@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+Crear artículo
+{% endblock titulo %}
+
+{% block contenido %}
+<h2>Crear nuevo artículo</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    {# Renderiza los campos del formulario (titulo, contenido, etc.) #}
+    {{ form.as_p }}
+
+    {# Campo para imágenes múltiples #}
+    <p>
+        <label for="id_imagenes">Imágenes:</label>
+        <input type="file" name="imagenes" id="id_imagenes" multiple>
+    </p>
+
+    <button type="submit">Guardar</button>
+    <a href="{% url 'blog:lista_articulos' %}">Cancelar</a>
+</form>
+{% endblock contenido %}
+

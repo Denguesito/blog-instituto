@@ -11,7 +11,7 @@ class ArticuloListView(ListView):
     model = Articulo
     template_name = 'blog/lista_articulos.html'
     context_object_name = 'articulos'
-    paginate_by = 2  # 👈 Paginación (2 artículos por página)
+    paginate_by = 4  # 👈 Paginación (2 artículos por página)
 
     def get_queryset(self):
         queryset = super().get_queryset()

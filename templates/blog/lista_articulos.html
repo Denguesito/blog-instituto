@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+POSTEOS
+{% endblock titulo %}
+
+{% block contenido %}
+<section>
+    <h2 class="page-title">Blog destinado a compartir posteos de los alumnos de el instituto</h2>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, eos dolor! Quas
+        eos error perferendis est iste repudiandae sint maxime, animi aperiam
+        recusandae libero dolorem, nihil fugit. Est, beatae minus!
+    </p>
+
+    <div class="articulos-container">
+        {% for articulo in articulos %}
+        <article class="articulo">
+            
+            {% if articulo.imagenes.first %}
+            <img src="{{ articulo.imagenes.first.imagen.url }}" alt="{{ articulo.titulo }}">
+            {% else %}
+            <p>No hay imagen</p>
+            {% endif %}
+            <h3>{{ articulo.titulo }}</h3>
+
+            <p>{{ articulo.contenido|truncatewords:20 }}</p><button><a href="{% url 'blog:detalle_articulo' articulo.pk %}">Ver más</a></button>
+            <p class="fecha">Publicado el {{ articulo.fecha_publicacion|date:"d M Y" }}</p>
+        </article>
+        {% empty %}
+        <p>No hay artículos disponibles.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Paginación -->
+    {% if is_paginated %}
+    <div class="paginacion">
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+        {% endif %}
+
+        <span>Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+        {% endif %}
+    </div>
+    {% endif %}
+
+   <!-- Botón Crear artículo -->
+<div class="crear-articulo">
+  <a href="{% url 'blog:crear_articulo' %}">Crear artículo</a>
+</div>
+
+
+</section>
+{% endblock contenido %}

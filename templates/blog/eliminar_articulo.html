@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+Eliminar artículo
+{% endblock titulo %}
+
+{% block contenido %}
+<h2>¿Estás seguro de que deseas eliminar este artículo?</h2>
+
+<p><strong>{{ object.titulo }}</strong></p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Sí, eliminar</button>
+    <a href="{% url 'blog:lista_articulos' %}">Cancelar</a>
+</form>
+{% endblock contenido %}
