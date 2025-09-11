@@ -1,57 +1,43 @@
-from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Comentario
-from apps.blog.models import Articulo
+from django.shortcuts import get_object_or_404 ,redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.shortcuts import redirect
+from django.views.generic import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from .models import Comentario
+from .forms import ComentarioForm
+from apps.blog.models import Articulo
+from .mixins import ComentarioPermisoMixin
 
 
-class AgregarComentarioView(CreateView):
+
+class ComentarioCreateView(LoginRequiredMixin, CreateView):
     model = Comentario
-    fields = ['contenido']
-    template_name = 'comentarios/agregar_comentario.html'
+    form_class = ComentarioForm
 
     def form_valid(self, form):
-        form.instance.autor = self.request.user  # Asigna el usuario actual como autor
-        form.instance.articulo = Articulo.objects.get(id=self.kwargs['articulo_id'])  # Asigna el artículo al comentario
+        form.instance.autor = self.request.user
+        form.instance.articulo = get_object_or_404(
+            Articulo, pk=self.kwargs['articulo_id']
+        )
         return super().form_valid(form)
 
     def get_success_url(self):
-        # Redirigir a la vista de detalle del artículo después de agregar el comentario
-        return reverse_lazy('blog:detalle_articulo', kwargs={'pk': self.kwargs['articulo_id']})
-    
-class ComentarioUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+        return reverse_lazy(
+            'blog:detalle_articulo',
+            kwargs={'pk': self.kwargs['articulo_id']}
+        )
+
+    # Evitar acceso directo vía GET
+    def get(self, request, *args, **kwargs):
+        return redirect('blog:detalle_articulo', pk=self.kwargs['articulo_id'])
+
+
+
+class ComentarioUpdateView(LoginRequiredMixin, UserPassesTestMixin, ComentarioPermisoMixin, UpdateView):
     model = Comentario
-    fields = ['contenido']  # Solo editamos el contenido
+    form_class = ComentarioForm
     template_name = 'comentarios/editar_comentario.html'
 
-    def test_func(self): 
-        comentario = self.get_object
-        return (self.request.user == comentario.autor or 
-                self.request.user.is_superuser or 
-                self.request.user.is_staff)
 
-
-
-    def get_success_url(self):
-        return reverse_lazy('blog:detalle_articulo', kwargs={'pk': self.object.articulo.pk})
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['articulo'] = self.object.articulo  # Asegúrate de incluir el artículo en el contexto
-        return context
-
-
-class ComentarioDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class ComentarioDeleteView(LoginRequiredMixin, UserPassesTestMixin, ComentarioPermisoMixin, DeleteView):
     model = Comentario
     template_name = 'comentarios/eliminar_comentario.html'
-
-    def test_func(self):
-        comentario = self.get_object
-        return (self.request.user == comentario.autor or 
-                self.request.user.is_superuser or 
-                self.request.user.is_staff)
-
-
-    def get_success_url(self):
-        return reverse_lazy('blog:detalle_articulo', kwargs={'pk': self.object.articulo.pk})

@@ -1,66 +1,36 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
-{% block titulo %}
-{{ articulo.titulo }}
-{% endblock titulo %}
+{% block content %}
+<h1>{{ articulo.titulo }}</h1>
+<p>{{ articulo.contenido }}</p>
+<p><em>Visitas: {{ articulo.visitas }}</em></p>
 
-{% block contenido %}
-<article>
-    <h1>{{ articulo.titulo }}</h1>
-    <p>
-        Publicado por <strong>{{ articulo.autor }}</strong> 
-        el {{ articulo.fecha_publicacion|date:"d M Y" }}
-        en {{ articulo.categoria }}
-    </p>
-    <p><em>Visitas: {{ articulo.visitas }}</em></p>
+<hr>
+<h2>Comentarios</h2>
 
-    {# Mostrar imágenes del artículo #}
-    {% if articulo.imagenes.all %}
-        <div>
-            {% for imagen in articulo.imagenes.all %}
-                <img src="{{ imagen.imagen.url }}" alt="{{ articulo.titulo }}" style="max-width:300px;">
-            {% endfor %}
-        </div>
-    {% endif %}
-
-    <div>
-        <p>{{ articulo.contenido }}</p>
+{% for comentario in comentarios %}
+    <div style="margin-bottom: 1em;">
+        <strong>{{ comentario.autor }}</strong> dijo:
+        <p>{{ comentario.contenido }}</p>
+        {% if user == comentario.autor or user.is_superuser or user.is_staff %}
+            <a href="{% url 'comentarios:editar' comentario.pk %}">Editar</a> |
+            <a href="{% url 'comentarios:eliminar' comentario.pk %}">Eliminar</a>
+        {% endif %}
     </div>
-</article>
+{% empty %}
+    <p>No hay comentarios aún. ¡Sé el primero en comentar!</p>
+{% endfor %}
 
 <hr>
-
-<section>
-    <h2>Comentarios</h2>
-
-    {% if comentarios %}
-        <ul>
-            {% for comentario in comentarios %}
-                <li>
-                    <strong>{{ comentario.autor }}</strong> dijo:
-                    <p>{{ comentario.contenido }}</p>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No hay comentarios aún.</p>
-    {% endif %}
-</section>
-
-<hr>
-
-{# Formulario para agregar comentarios #}
 {% if user.is_authenticated %}
-    <section>
-        <h3>Agregar comentario</h3>
-        <form method="post">
-            {% csrf_token %}
-            <textarea name="contenido" rows="4" cols="50" placeholder="Escribe tu comentario..."></textarea>
-            <br>
-            <button type="submit">Publicar</button>
-        </form>
-    </section>
+    <h3>Deja tu comentario</h3>
+    <form action="{% url 'comentarios:agregar' articulo.pk %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Comentar</button>
+    </form>
 {% else %}
-    <p><a href="{% url 'login' %}">Inicia sesión</a> para comentar.</p>
+    <p>Debes <a href="{% url 'login' %}">iniciar sesión</a> para comentar.</p>
 {% endif %}
-{% endblock contenido %}
+
+{% endblock %}

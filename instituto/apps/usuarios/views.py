@@ -23,7 +23,7 @@ class RegistroUsuarioView(View):
             usuario = form.save()
             login(request, usuario)  # loguea automáticamente al registrarse
             messages.success(request, f"Bienvenido {usuario.username}, tu cuenta fue creada correctamente.")
-            return redirect('pagina_principal')  # cambiar por tu url principal
+            return redirect('index.html')
         return render(request, self.template_name, {'form': form})
 
 
@@ -40,7 +40,7 @@ class LoginUsuarioView(View):
         if usuario is not None:
             login(request, usuario)
             messages.success(request, f"Bienvenido {usuario.username}")
-            return redirect('pagina_principal')
+            return redirect('index.html')
         else:
             messages.error(request, "Usuario o contraseña incorrectos")
             return render(request, self.template_name)
@@ -63,5 +63,5 @@ class LogoutUsuarioView(View):
     def get(self, request):
         logout(request)
         messages.success(request, "Has cerrado sesión correctamente")
-        return redirect('pagina_principal')
+        return redirect('index.html')
 

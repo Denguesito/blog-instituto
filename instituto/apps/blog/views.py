@@ -5,6 +5,8 @@ from .forms import ArticuloForm
 from django.db.models import Sum
 from apps.comentarios.models import Comentario
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from apps.comentarios.forms import ComentarioForm
+from django.shortcuts import get_object_or_404
 
 
 class ArticuloListView(ListView):
@@ -54,13 +56,19 @@ class ArticuloDetailView(DetailView):
         return articulo
 
     def get_queryset(self):
-        # 👇 Optimización de queries en detalle
-        return super().get_queryset().select_related("categoria", "autor").prefetch_related("imagenes")
+        # Optimización de queries
+        return super().get_queryset().select_related(
+            "categoria", "autor"
+        ).prefetch_related("imagenes")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # 👇 Prefetch de comentarios para no hacer consultas por cada render
-        context['comentarios'] = Comentario.objects.filter(articulo=self.object).select_related("autor")
+        # Prefetch de comentarios
+        context['comentarios'] = Comentario.objects.filter(
+            articulo=self.object
+        ).select_related("autor")
+        # Pasamos form vacío (lo usa el template para hacer POST al CreateView de comentarios)
+        context['form'] = ComentarioForm()
         return context
 
     def post(self, request, *args, **kwargs):
@@ -83,11 +91,32 @@ class ArticuloCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.autor = self.request.user
+
+        # Validar archivos recibidos (tipo y tamaño)
+        archivos = self.request.FILES.getlist('imagenes')
+        errores = []
+        tipos_validos = ['image/jpeg', 'image/png', 'image/gif', 'image/webp']
+        max_size = 5 * 1024 * 1024
+
+        for f in archivos:
+            if f.content_type not in tipos_validos:
+                errores.append(f"{f.name}: tipo de archivo no permitido ({f.content_type}).")
+            if f.size > max_size:
+                errores.append(f"{f.name}: excede 5MB.")
+
+        if errores:
+            # Anexar errores genéricos al formulario y re-renderizar
+            form.add_error('titulo', 'Errores en archivos: ' + '; '.join(errores))
+            return self.form_invalid(form)
+
+        # Si todo está bien, guardar el objeto y luego las imágenes
         response = super().form_valid(form)
-        # Guardar múltiples imágenes
-        for archivo in self.request.FILES.getlist('imagenes'):
+        for archivo in archivos:
             ImagenArticulo.objects.create(articulo=self.object, imagen=archivo)
         return response
+
+    def form_invalid(self, form):
+        return super().form_invalid(form)
 
 
 class ArticuloUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
