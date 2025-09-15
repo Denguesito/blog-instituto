@@ -32,12 +32,12 @@ class ComentarioCreateView(LoginRequiredMixin, CreateView):
 
 
 
-class ComentarioUpdateView(LoginRequiredMixin, UserPassesTestMixin, ComentarioPermisoMixin, UpdateView):
+class ComentarioUpdateView(LoginRequiredMixin, ComentarioPermisoMixin, UpdateView):
     model = Comentario
     form_class = ComentarioForm
     template_name = 'comentarios/editar_comentario.html'
 
 
-class ComentarioDeleteView(LoginRequiredMixin, UserPassesTestMixin, ComentarioPermisoMixin, DeleteView):
+class ComentarioDeleteView(LoginRequiredMixin, ComentarioPermisoMixin, DeleteView):
     model = Comentario
     template_name = 'comentarios/eliminar_comentario.html'

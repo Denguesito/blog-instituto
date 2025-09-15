@@ -1,6 +1,7 @@
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import UserPassesTestMixin
 
-class ComentarioPermisoMixin:
+class ComentarioPermisoMixin(UserPassesTestMixin):
     """Mixin para permisos y redirección común de Comentarios."""
 
     def test_func(self):

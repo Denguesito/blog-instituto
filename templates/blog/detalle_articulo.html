@@ -1,10 +1,18 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block contenido %}
 <h1>{{ articulo.titulo }}</h1>
 <p>{{ articulo.contenido }}</p>
+    {% if articulo.imagenes.all %}
+        <div>
+            {% for imagen in articulo.imagenes.all %}
+                <img src="{{ imagen.imagen.url }}" alt="{{ articulo.titulo }}" style="max-width:300px;">
+            {% endfor %}
+        </div>
+    {% endif %}
 <p><em>Visitas: {{ articulo.visitas }}</em></p>
-
+<button><a href="{% url 'blog:editar_articulo' articulo.pk %}">Editar</a></button>
+<button><a href="{% url 'blog:eliminar_articulo' articulo.pk %}">Eliminar</a></button>
 <hr>
 <h2>Comentarios</h2>
 
@@ -13,8 +21,8 @@
         <strong>{{ comentario.autor }}</strong> dijo:
         <p>{{ comentario.contenido }}</p>
         {% if user == comentario.autor or user.is_superuser or user.is_staff %}
-            <a href="{% url 'comentarios:editar' comentario.pk %}">Editar</a> |
-            <a href="{% url 'comentarios:eliminar' comentario.pk %}">Eliminar</a>
+            <a href="{% url 'comentarios:editar_comentario' comentario.pk %}">Editar</a> |
+            <a href="{% url 'comentarios:eliminar_comentario' comentario.pk %}">Eliminar</a>
         {% endif %}
     </div>
 {% empty %}
@@ -24,7 +32,7 @@
 <hr>
 {% if user.is_authenticated %}
     <h3>Deja tu comentario</h3>
-    <form action="{% url 'comentarios:agregar' articulo.pk %}" method="post">
+    <form action="{% url 'comentarios:agregar_comentario' articulo.pk %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Comentar</button>
@@ -33,4 +41,5 @@
     <p>Debes <a href="{% url 'login' %}">iniciar sesión</a> para comentar.</p>
 {% endif %}
 
-{% endblock %}
+
+{% endblock contenido %}

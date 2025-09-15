@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+
+{% block contenido %}
+<h2>Editar comentario</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {# o simplemente {{ form.as_p }} si no usas crispy #}
+    <label for="id_contenido">Contenido:</label>
+        <input type="text" name="contenido" id="id_contenido" value="{{ form.contenido.value|default:'' }}">
+    <button type="submit">Guardar cambios</button>
+    <a href="{% url 'blog:detalle_articulo' object.articulo.pk %}">Cancelar</a>
+</form>
+{% endblock contenido %}

@@ -123,7 +123,6 @@ class ArticuloUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Articulo
     form_class = ArticuloForm
     template_name = 'blog/editar_articulo.html'
-    success_url = reverse_lazy('blog:lista_articulos')
 
     def form_valid(self, form):
         response = super().form_valid(form)
@@ -133,6 +132,9 @@ class ArticuloUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         return self.get_object().puede_editar(self.request.user)
+
+    def get_success_url(self):
+        return reverse_lazy('blog:detalle_articulo', kwargs={'pk': self.object.pk})
 
 
 class ArticuloDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
