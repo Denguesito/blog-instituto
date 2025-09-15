@@ -3,11 +3,13 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
-from .forms import RegistroUsuarioForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import UpdateView
-from .forms import PerfilUsuarioForm
+
+from .forms import RegistroUsuarioForm, PerfilUsuarioForm
 from .models import Usuario
+
 
 class RegistroUsuarioView(View):
     form_class = RegistroUsuarioForm
@@ -23,7 +25,7 @@ class RegistroUsuarioView(View):
             usuario = form.save()
             login(request, usuario)  # loguea automáticamente al registrarse
             messages.success(request, f"Bienvenido {usuario.username}, tu cuenta fue creada correctamente.")
-            return redirect('index.html')
+            return redirect('index')   # 🔥 corregido
         return render(request, self.template_name, {'form': form})
 
 
@@ -31,19 +33,19 @@ class LoginUsuarioView(View):
     template_name = 'usuarios/login.html'
 
     def get(self, request):
-        return render(request, self.template_name)
+        return render(request, self.template_name, {'form': AuthenticationForm()})
 
     def post(self, request):
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        usuario = authenticate(request, username=username, password=password)
-        if usuario is not None:
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            usuario = form.get_user()
             login(request, usuario)
             messages.success(request, f"Bienvenido {usuario.username}")
-            return redirect('index.html')
+            return redirect('index')   # 🔥 corregido
         else:
             messages.error(request, "Usuario o contraseña incorrectos")
-            return render(request, self.template_name)
+        return render(request, self.template_name, {'form': form})
+
 
 class PerfilUsuarioView(LoginRequiredMixin, UpdateView):
     model = Usuario
@@ -59,9 +61,9 @@ class PerfilUsuarioView(LoginRequiredMixin, UpdateView):
         messages.success(self.request, "Perfil actualizado correctamente")
         return super().form_valid(form)
 
+
 class LogoutUsuarioView(View):
-    def get(self, request):
+    def post(self, request):   # 🔥 ahora con POST
         logout(request)
         messages.success(request, "Has cerrado sesión correctamente")
-        return redirect('index.html')
-
+        return redirect('index')   # 🔥 corregido

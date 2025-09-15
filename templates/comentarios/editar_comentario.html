@@ -6,9 +6,9 @@
 
 <form method="post">
     {% csrf_token %}
-    {# o simplemente {{ form.as_p }} si no usas crispy #}
+    {{ form.as_p }}
     <label for="id_contenido">Contenido:</label>
-        <input type="text" name="contenido" id="id_contenido" value="{{ form.contenido.value|default:'' }}">
+    <input type="text" name="contenido" id="id_contenido" value="{{ form.contenido.value|default:'' }}">
     <button type="submit">Guardar cambios</button>
     <a href="{% url 'blog:detalle_articulo' object.articulo.pk %}">Cancelar</a>
 </form>
