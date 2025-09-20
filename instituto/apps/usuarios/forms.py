@@ -2,7 +2,6 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import Usuario
 
-
 class RegistroUsuarioForm(UserCreationForm):
     password1 = forms.CharField(
         label="Contraseña",
@@ -16,7 +15,7 @@ class RegistroUsuarioForm(UserCreationForm):
 
     class Meta:
         model = Usuario
-        fields = ('username', 'first_name', 'last_name', 'email', 'telefono', 'avatar')
+        fields = ('username', 'first_name', 'last_name', 'email', 'telefono')
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -35,11 +34,10 @@ class RegistroUsuarioForm(UserCreationForm):
 class PerfilUsuarioForm(forms.ModelForm):
     class Meta:
         model = Usuario
-        fields = ('username', 'first_name', 'last_name', 'email', 'telefono', 'avatar')
+        fields = ('username', 'first_name', 'last_name', 'email', 'telefono')
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
-        # Validar que no exista otro usuario con el mismo email
         if Usuario.objects.filter(email=email).exclude(pk=self.instance.pk).exists():
             raise forms.ValidationError("Ya existe un usuario con este correo electrónico.")
         return email

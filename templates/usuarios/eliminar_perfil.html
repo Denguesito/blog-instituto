@@ -1,14 +1,13 @@
-
 {% extends 'base.html' %}
 {% load static %}
 
 {% block contenido %}
 <div class="usuarios-app">
-    <h2>Cerrar Sesión</h2>
-    <p>¿Estás seguro que querés cerrar sesión?</p>
+    <h2>Eliminar Cuenta</h2>
+    <p>¿Estás seguro que querés eliminar tu cuenta? Esta acción no se puede deshacer.</p>
     <form method="post">
         {% csrf_token %}
-        <button type="submit" class="logout-btn">Sí, cerrar sesión</button>
+        <button type="submit" class="delete-btn">Sí, eliminar mi cuenta</button>
         <a href="{% url 'usuarios:perfil' %}" class="cancel-btn">Cancelar</a>
     </form>
 </div>

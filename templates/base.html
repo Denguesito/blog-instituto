@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{% static 'css/lista_articulos.css' %}" />
     <link rel="stylesheet" href="{% static 'css/crear_articulo.css' %}" />
     <link rel="stylesheet" href="{% static 'css/detalle_articulo.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/perfil.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/usuarios.css' %}" />
     <!-- 
     -->
     
@@ -36,12 +36,8 @@
                   <a href="{% url 'usuarios:perfil' %}" class="registros">Perfil de Usuario</a>
               </li>
               <li>
-                  <form class="form_registros" action="{% url 'usuarios:logout' %}" method="post">
-                      {% csrf_token %}
-                      <button type="submit" class="registros">
-                          Cerrar sesión
-                      </button>
-                  </form>
+                  <!-- Manteniendo la class 'form_registros' y 'registros' -->
+                  <a href="{% url 'usuarios:logout' %}" class="form_registros registros">Cerrar sesión</a>
               </li>
           {% else %}
               <li><a href="{% url 'usuarios:login' %}" class="registros">Iniciar Sesión</a></li>

@@ -1,0 +1,195 @@
+/* Contenedor principal para aislar todos los estilos */
+.usuarios-app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 50px 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Títulos */
+.usuarios-app h2 {
+    font-size: 2rem;
+    margin-bottom: 25px;
+    color: #2c3e50;
+    text-align: center;
+}
+
+/* Formularios */
+.usuarios-app form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+/* Labels e Inputs */
+.usuarios-app form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #34495e;
+}
+
+.usuarios-app form input {
+    padding: 12px;
+    margin-bottom: 18px;
+    border: 1px solid #bdc3c7;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border 0.3s;
+}
+
+.usuarios-app form input:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+/* Botones generales */
+.usuarios-app button, 
+.usuarios-app a.edit-btn,
+.usuarios-app a.cancel-btn,
+.usuarios-app a.logout-btn,
+.usuarios-app a.delete-btn {
+    padding: 10px 18px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.3s, transform 0.2s;
+}
+
+/* Botón de envío / guardar */
+.usuarios-app button[type="submit"], 
+.usuarios-app .save-btn {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+.usuarios-app button[type="submit"]:hover,
+.usuarios-app .save-btn:hover {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+}
+
+/* Botón de cancelar */
+.usuarios-app .cancel-btn {
+    background-color: #95a5a6;
+    color: #fff;
+    margin-left: 10px;
+}
+
+.usuarios-app .cancel-btn:hover {
+    background-color: #7f8c8d;
+    transform: translateY(-2px);
+}
+
+/* Botón de editar */
+.usuarios-app .edit-btn {
+    background-color: #3498db;
+    color: #fff;
+    margin-right: 5px;
+}
+
+.usuarios-app .edit-btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+/* Botón de eliminar (reemplaza logout en el perfil) */
+.usuarios-app .delete-btn {
+    background-color: #e74c3c;
+    color: #fff;
+    margin-left: 5px;
+}
+
+.usuarios-app .delete-btn:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+}
+
+/* Tarjeta de perfil */
+.usuarios-app .perfil-card {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Avatar */
+.usuarios-app .avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 3px solid #3498db;
+}
+
+/* Lista de detalles */
+.usuarios-app ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.usuarios-app ul li {
+    margin-bottom: 12px;
+    font-size: 1rem;
+    color: #2c3e50;
+}
+
+/* Contenedor de botones del perfil */
+.usuarios-app .perfil-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Links de registro/login */
+.usuarios-app p {
+    margin-top: 20px;
+    font-size: 0.95rem;
+    color: #7f8c8d;
+    text-align: center;
+}
+
+.usuarios-app p a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.usuarios-app p a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+    .usuarios-app form,
+    .usuarios-app .perfil-card {
+        padding: 20px;
+    }
+
+    .usuarios-app .avatar {
+        width: 100px;
+        height: 100px;
+    }
+}

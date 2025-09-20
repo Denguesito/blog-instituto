@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+<div class="usuarios-app">
+    <h2>Editar Perfil</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="perfil-buttons">
+            <button type="submit" class="save-btn">Guardar cambios</button>
+            <a href="{% url 'usuarios:perfil' %}" class="cancel-btn">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock contenido %}
