@@ -7,7 +7,7 @@ Crear artículo
 {% block contenido %}
 <h2>Crear nuevo artículo</h2>
 
-<form method="post" enctype="multipart/form-data">
+<form class="crear_articulo" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
 
@@ -78,7 +78,7 @@ Crear artículo
     })();
     </script>
 
-    <button type="submit">Guardar</button>
-    <a href="{% url 'blog:lista_articulos' %}">Cancelar</a>
+   <button type="submit">Publicar</button>
+    <a href="{% url 'blog:lista_articulos' %}" class="btn-cancel">Cancelar</a>
 </form>
 {% endblock contenido %}

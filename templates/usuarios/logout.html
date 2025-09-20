@@ -1,0 +1,19 @@
+
+{% block titulo %}
+Cerrar sesión
+{% endblock titulo %}
+
+{% block contenido %}
+<div class="user-container logout-card">
+  <h2>Cerrar sesión</h2>
+  <p>¿Estás seguro que querés cerrar la sesión?</p>
+
+  <form method="post" action="{% url 'usuarios:logout' %}" class="user-form">
+    {% csrf_token %}
+    <div class="logout-actions">
+      <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+      <a href="{% url 'index' %}" class="btn btn-secondary">Cancelar</a>
+    </div>
+  </form>
+</div>
+{% endblock contenido %}

@@ -1,103 +1,76 @@
-/* Contenedor general */
-form {
-  max-width: 600px;
+.blog-form {
+  max-width: 700px;
   margin: 40px auto;
-  padding: 20px;
-  background: #ffffff;
+  padding: 30px;
+  background: #fff;
   border-radius: 12px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 18px;
 }
 
-/* Título */
-h2 {
+.blog-form h2 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  font-size: 1.8rem;
   color: #333;
 }
 
-/* Estilos para los párrafos del form.as_p */
-form p {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin: 0;
-}
-
-/* Etiquetas */
-form label {
+.blog-form label {
   font-weight: 600;
   color: #444;
-  font-size: 0.95rem;
 }
 
-/* Inputs y textarea */
-form input[type="text"],
-form input[type="file"],
-form input[type="email"],
-form input[type="password"],
-form textarea,
-form select {
-  padding: 10px;
+.blog-form input[type="text"],
+.blog-form input[type="file"],
+.blog-form textarea,
+.blog-form select {
+  padding: 12px;
   border: 1px solid #ccc;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 1rem;
-  transition: border 0.3s ease;
+  transition: border-color 0.3s ease;
 }
 
-form input:focus,
-form textarea:focus,
-form select:focus {
+.blog-form input:focus,
+.blog-form textarea:focus,
+.blog-form select:focus {
   border-color: #f39c12;
   outline: none;
 }
 
-/* Botones */
-form button,
-form a {
-  display: inline-block;
-  text-align: center;
-  padding: 12px 20px;
+.blog-form button {
+  background-color: #f39c12;
+  color: #fff;
+  border: none;
+  padding: 12px;
   border-radius: 8px;
-  font-size: 1rem;
   font-weight: bold;
-  text-decoration: none;
   cursor: pointer;
   transition: background 0.3s ease;
 }
 
-/* Botón Guardar */
-form button {
-  background: #f39c12;
-  color: #fff;
-  border: none;
+.blog-form button:hover {
+  background-color: #e67e22;
 }
 
-form button:hover {
-  background: #e67e22;
+.blog-form .btn-cancel {
+  background-color: #6c757d;
 }
 
-/* Botón Cancelar */
-form a {
-  background: #ccc;
-  color: #333;
-}
-
-form a:hover {
-  background: #999;
-  color: #fff;
+.blog-form .btn-cancel:hover {
+  background-color: #5a6268;
 }
 
 /* Responsivo */
-@media (max-width: 480px) {
-  form {
-    padding: 15px;
+@media (max-width: 768px) {
+  .blog-form {
+    padding: 20px;
   }
 
-  form button,
-  form a {
+  .blog-form button,
+  .blog-form .btn-cancel {
     width: 100%;
   }
 }

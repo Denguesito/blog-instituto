@@ -19,6 +19,7 @@ class ArticuloForm(forms.ModelForm):
                 'class': 'textarea_custom1',
                 'rows': 10,
                 'cols': 80,
+                'style': 'resize:none;'
             }),
         }
 

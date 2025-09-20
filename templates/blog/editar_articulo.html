@@ -5,9 +5,9 @@ Editar artículo
 {% endblock titulo %}
 
 {% block contenido %}
-<h2>Editar artículo</h2>
+<h2 class="page-title">Editar Artículo</h2>
 
-<form method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data" class="blog-form">
     {% csrf_token %}
     
     {# Renderiza los campos del formulario #}
@@ -28,8 +28,10 @@ Editar artículo
             {% endfor %}
         </div>
     {% endif %}
-
-    <button type="submit">Guardar cambios</button>
-    <a href="{% url 'blog:lista_articulos' %}">Cancelar</a>
+    <div style="margin-top:18px; display:flex; justify-content:center; gap:12px;" >
+        <button type="submit" class="btn btn-peligro" >Guardar cambios</button>
+        <a href="{% url 'blog:lista_articulos' %}" class="btn btn-cancel" >Cancelar</a>
+    </div>
+   
 </form>
 {% endblock contenido %}

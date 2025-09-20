@@ -20,6 +20,7 @@ class ArticuloListView(ListView):
 
         # 👇 Optimización de queries
         queryset = queryset.select_related("categoria", "autor").prefetch_related("imagenes")
+        queryset = queryset.order_by('-fecha_publicacion')
 
         categoria_id = self.request.GET.get('categoria')
         ordenar_por = self.request.GET.get('ordenar_por')
@@ -63,6 +64,7 @@ class ArticuloDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['usuario_actual'] = self.request.user
         # Prefetch de comentarios
         context['comentarios'] = Comentario.objects.filter(
             articulo=self.object

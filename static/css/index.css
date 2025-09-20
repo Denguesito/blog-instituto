@@ -1,108 +1,93 @@
+/* ===================== */
+/* INICIO - CARACTERÍSTICAS */
+/* ===================== */
+
+
 .page-title {
-    text-align: center;
-    margin: 40px 0;
-    font-size: 2.5rem; 
+  text-align: center;
+  margin: 40px 0;
+  font-size: 2.5rem;
+  color: #007BFF;
 }
 
-/*Seccion de caracteristicas */
 
+/*Sección principal*/ 
 .feature {
     display: flex;
     flex-direction: column;
-    gap: 60px;
-    padding: 0 20px;
+    gap: 80px;
+    padding: 0 30px;
+    max-width: 1200px;
+    margin: auto;
 }
 
-/*Cada bloque de imagenes + texto */
-
-.feature-item {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-}
+/* Bloques de contenido */
+.feature-item,
 .feature-item2 {
     display: flex;
     align-items: center;
-    gap: 30px;
-    flex-direction: row-reverse;
-}
-.feature-item img {
-    width: 50%;
-    height: auto;
-    border-radius: 10px;
+    gap: 40px;
 }
 
+.feature-item img,
 .feature-item2 img {
     width: 50%;
     height: auto;
-    border-radius: 10px;
+    border-radius: 12px;
+    box-shadow: 0px 6px 15px rgba(0,0,0,0.1);
+    transition: transform 0.4s ease;
 }
 
-/*Textos*/
+.feature-item img:hover,
+.feature-item2 img:hover {
+    transform: scale(1.03);
+}
 
+/* Texto */
 .feature-text {
     width: 50%;
 }
 
 .feature-text h2 {
-    margin-bottom: 10px;
-    font-size: 1.8rem;
+    margin-bottom: 15px;
+    font-size: 2rem;
+    color: #007BFF;
 }
 
 .feature-text p {
     font-size: 1.1rem;
-    line-height: 1.5rem;
+    line-height: 1.6rem;
+    color: #555;
 }
 
-/* texto a la derecha*/
-
-.feature-text.rigth {
-   order: 2;
-   text-align: left;
+/* Alternar orden */
+.feature-item2 {
+    flex-direction: row-reverse;
 }
 
-/* text a la izquierda */
 
-.feature-text.left {
-    order: 1;
-    text-align: right;
-}
 
-/*para las imagenes si estan de lado derecho o izquierdo*/
-
-.feature-text.rigth + img {
-    order: 1;
-}
-
-.feature-text.left + img {
-    order: 2;
-}
+/* --------------------- */
+/* RESPONSIVO */
+/* --------------------- */
 
 @media(max-width: 768px){
-    .feature-item{
-        flex-direction: column;
-    }
-
+    .feature-item,
     .feature-item2 {
         flex-direction: column;
+        text-align: center;
     }
 
-    .feature-text{
+    .feature-text {
         width: 100%;
-        text-align: center !important;
     }
 
-    .feature-item
-
-    .feature-item img {
+    .feature-item img,
+    .feature-item2 img {
         width: 100%;
     }
 
     .page-title {
         font-size: 2rem;
-    }
-
-    .feature-text h2 {
-        font-size: 1.5rem;
     }
 }

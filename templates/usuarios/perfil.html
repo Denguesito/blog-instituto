@@ -1,29 +1,27 @@
 {% extends "base.html" %}
+{% load static %}
+
 
 {% block titulo %}
-Perfil de Usuario
+Mi perfil
 {% endblock titulo %}
 
 {% block contenido %}
-<section class="form_section">
-  <div class="config_reg">
-    <h2 class="titulo-registro">Mi Perfil</h2>
-    <form class="registro" method="post" enctype="multipart/form-data">
-      {% csrf_token %}
+<div class="user-container perfil-card">
+  <h2>{{ user.username }}</h2>
 
-      {% for field in form %}
-        <div class="form-group">
-          {{ field.label_tag }} {{ field }}
-          {% if field.errors %}
-            <div class="text-danger small">
-              {{ field.errors|join:", " }}
-            </div>
-          {% endif %}
-        </div>
-      {% endfor %}
+  <div class="perfil-avatar">
+  {% if user.profile.avatar %}
+    <img src="{{ user.profile.avatar.url }}" alt="Avatar de {{ user.username }}">
+  {% else %}
+    <img src="{% static 'img/default-avatar.png' %}" alt="Avatar por defecto">
+  {% endif %}
+</div>
 
-      <button type="submit" class="btn-registrar">Guardar cambios</button>
-    </form>
-  </div>
-</section>
+  <form method="post" enctype="multipart/form-data" class="user-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+  </form>
+</div>
 {% endblock contenido %}

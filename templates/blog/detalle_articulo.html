@@ -1,45 +1,59 @@
 {% extends "base.html" %}
 
+{% block titulo %}
+Detalle del Artículo
+{% endblock titulo %}
+
 {% block contenido %}
-<h1>{{ articulo.titulo }}</h1>
-<p>{{ articulo.contenido }}</p>
-    {% if articulo.imagenes.all %}
-        <div>
-            {% for imagen in articulo.imagenes.all %}
-                <img src="{{ imagen.imagen.url }}" alt="{{ articulo.titulo }}" style="max-width:300px;">
-            {% endfor %}
-        </div>
-    {% endif %}
-<p><em>Visitas: {{ articulo.visitas }}</em></p>
-<button><a href="{% url 'blog:editar_articulo' articulo.pk %}">Editar</a></button>
-<button><a href="{% url 'blog:eliminar_articulo' articulo.pk %}">Eliminar</a></button>
-<hr>
-<h2>Comentarios</h2>
+<section class="blog-detail">
+  <h1 class="page-title">{{ articulo.titulo }}</h1>
+  <p>{{ articulo.contenido }}</p>
 
-{% for comentario in comentarios %}
-    <div style="margin-bottom: 1em;">
-        <strong>{{ comentario.autor }}</strong> dijo:
-        <p>{{ comentario.contenido }}</p>
-        {% if user == comentario.autor or user.is_superuser or user.is_staff %}
-            <a href="{% url 'comentarios:editar_comentario' comentario.pk %}">Editar</a> |
-            <a href="{% url 'comentarios:eliminar_comentario' comentario.pk %}">Eliminar</a>
-        {% endif %}
-    </div>
-{% empty %}
-    <p>No hay comentarios aún. ¡Sé el primero en comentar!</p>
-{% endfor %}
+  {% if articulo.imagenes.all %}
+  <div class="carousel-container">
+    {% for imagen in articulo.imagenes.all %}
+      <img src="{{ imagen.imagen.url }}" alt="{{ articulo.titulo }}">
+    {% endfor %}
+  </div>
+  {% endif %}
 
-<hr>
-{% if user.is_authenticated %}
-    <h3>Deja tu comentario</h3>
-    <form action="{% url 'comentarios:agregar_comentario' articulo.pk %}" method="post">
+  {# Botones de edición/eliminación del artículo solo si puede editar #}
+  {% if usuario_actual.is_authenticated and usuario_actual == articulo.autor or usuario_actual.is_staff or usuario_actual.is_superuser %}
+    <a href="{% url 'blog:editar_articulo' articulo.pk %}" class="btn-primary">Editar</a>
+    <form action="{% url 'blog:eliminar_articulo' articulo.pk %}" method="post" style="display:inline;">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Comentar</button>
+        <button type="submit" class="btn-danger">Eliminar</button>
     </form>
-{% else %}
-    <p>Debes <a href="{% url 'login' %}">iniciar sesión</a> para comentar.</p>
 {% endif %}
 
+  <hr>
 
+  <h2>Comentarios</h2>
+
+  {% for comentario in comentarios %}
+    <div class="comment">
+      <strong>{{ comentario.autor }}</strong> dijo:
+      <p>{{ comentario.contenido }}</p>
+      {% if usuario_actual == comentario.autor or usuario_actual.is_superuser or usuario_actual.is_staff %}
+        <a href="{% url 'comentarios:editar_comentario' comentario.pk %}">Editar</a>
+        <a href="{% url 'comentarios:eliminar_comentario' comentario.pk %}">Eliminar</a>
+      {% endif %}
+    </div>
+  {% empty %}
+    <p>No hay comentarios aún. ¡Sé el primero en comentar!</p>
+  {% endfor %}
+
+  <hr>
+
+  {% if usuario_actual.is_authenticated %}
+    <h3>Deja tu comentario</h3>
+    <form action="{% url 'comentarios:agregar_comentario' articulo.pk %}" method="post" class="blog-form">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Comentar</button>
+    </form>
+  {% else %}
+    <p>Debes <a href="{% url 'usuarios:login' %}">iniciar sesión</a> para comentar.</p>
+  {% endif %}
+</section>
 {% endblock contenido %}
