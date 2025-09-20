@@ -20,11 +20,8 @@ Detalle del Artículo
   {# Botones de edición/eliminación del artículo solo si puede editar #}
   {% if usuario_actual.is_authenticated and usuario_actual == articulo.autor or usuario_actual.is_staff or usuario_actual.is_superuser %}
     <a href="{% url 'blog:editar_articulo' articulo.pk %}" class="btn-primary">Editar</a>
-    <form action="{% url 'blog:eliminar_articulo' articulo.pk %}" method="post" style="display:inline;">
-        {% csrf_token %}
-        <button type="submit" class="btn-danger">Eliminar</button>
-    </form>
-{% endif %}
+    <a href="{% url 'blog:eliminar_articulo' articulo.pk %}" class="btn-danger">Eliminar</a>
+  {% endif %}
 
   <hr>
 

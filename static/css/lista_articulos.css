@@ -59,6 +59,56 @@
 }
 
 /* ========================= */
+/* FILTROS LISTA ARTÍCULOS   */
+/* ========================= */
+
+.filtros-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 25px 0;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.filtros-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filtros-form select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.filtros-form select:focus {
+  border-color: #f39c12;
+  outline: none;
+}
+
+/* Botón reutiliza el estilo de botones */
+.filtros-form .btn {
+  background-color: #f39c12;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.filtros-form .btn:hover {
+  background-color: #e67e22;
+}
+
+
+
+/* ========================= */
 /* PAGINACION */
 .paginacion {
   margin-top: 40px;

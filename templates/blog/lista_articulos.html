@@ -6,25 +6,57 @@ POSTEOS
 
 {% block contenido %}
 <section>
-    <h2 class="page-title">CHANCHITO FELIS </h2>
+    <h2 class="page-title">CHANCHITO FELIS</h2>
     <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, eos dolor! Quas
         eos error perferendis est iste repudiandae sint maxime, animi aperiam
         recusandae libero dolorem, nihil fugit. Est, beatae minus!
     </p>
 
+    <!-- Filtros + Crear artículo en la misma fila -->
+    <div class="filtros-container">
+      <form method="get" class="filtros-form">
+        <!-- Categorías -->
+        <select name="categoria">
+          <option value="">Todas las categorías</option>
+          {% for categoria in categorias %}
+            <option value="{{ categoria.id }}" {% if request.GET.categoria == categoria.id|stringformat:"s" %}selected{% endif %}>
+              {{ categoria.nombre }}
+            </option>
+          {% endfor %}
+        </select>
+
+        <!-- Orden -->
+        <select name="ordenar_por">
+          <option value="">Ordenar por...</option>
+          <option value="asc" {% if request.GET.ordenar_por == 'asc' %}selected{% endif %}>Visitas (asc)</option>
+          <option value="desc" {% if request.GET.ordenar_por == 'desc' %}selected{% endif %}>Visitas (desc)</option>
+          <option value="fecha_asc" {% if request.GET.ordenar_por == 'fecha_asc' %}selected{% endif %}>Fecha (asc)</option>
+          <option value="fecha_desc" {% if request.GET.ordenar_por == 'fecha_desc' %}selected{% endif %}>Fecha (desc)</option>
+        </select>
+
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+      </form>
+
+      <div class="crear-articulo">
+        <a href="{% url 'blog:crear_articulo' %}">Crear artículo</a>
+      </div>
+    </div>
+
     <div class="articulos-container">
         {% for articulo in articulos %}
         <article class="articulo">
-            
             {% if articulo.imagenes.first %}
             <img src="{{ articulo.imagenes.first.imagen.url }}" alt="{{ articulo.titulo }}">
             {% else %}
             <p>No hay imagen</p>
             {% endif %}
-            <h3>{{ articulo.titulo }}</h3>
 
-            <p>{{ articulo.contenido|truncatewords:20 }}</p><button><a href="{% url 'blog:detalle_articulo' articulo.pk %}">Ver más</a></button>
+            <h3>{{ articulo.titulo }}</h3>
+            <p>{{ articulo.contenido|truncatewords:20 }}</p>
+            <button>
+              <a href="{% url 'blog:detalle_articulo' articulo.pk %}">Ver más</a>
+            </button>
             <p class="fecha">Publicado el {{ articulo.fecha_publicacion|date:"d M Y" }}</p>
         </article>
         {% empty %}
@@ -46,12 +78,5 @@ POSTEOS
         {% endif %}
     </div>
     {% endif %}
-
-   <!-- Botón Crear artículo -->
-<div class="crear-articulo">
-  <a href="{% url 'blog:crear_articulo' %}">Crear artículo</a>
-</div>
-
-
 </section>
 {% endblock contenido %}
