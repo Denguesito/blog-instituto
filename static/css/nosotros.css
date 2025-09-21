@@ -1,0 +1,54 @@
+/* ========================= */
+/* NOSOTROS - ESTILOS EXTRA */
+/* ========================= */
+.nosotros-app {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.nosotros-app .intro-text {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 40px auto;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* Títulos internos */
+.nosotros-app h2 {
+  color: #007BFF;
+  margin-bottom: 15px;
+}
+
+.nosotros-app ul {
+  margin-left: 20px;
+  color: #444;
+  line-height: 1.6;
+}
+
+/* Bloques dos columnas (✅❌) */
+.nosotros-app .dos-col {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.nosotros-app .dos-col h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.ok-title {
+  color: #27ae60;
+}
+.no-title {
+  color: #c0392b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nosotros-app .dos-col {
+    flex-direction: column;
+  }
+}

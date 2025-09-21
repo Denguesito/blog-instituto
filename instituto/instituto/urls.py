@@ -8,7 +8,7 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('contacto', views.Contacto, name='contacto'),
+    path('contacto', views.Nosotros, name='contacto'),
     path('blog/', include(('apps.blog.urls', 'blog'), namespace='blog')),
     path('comentarios/', include(('apps.comentarios.urls', 'comentarios'), namespace='comentarios')),
     path('usuarios/', include(('apps.usuarios.urls', 'usuarios'), namespace='usuarios')),

@@ -1,3 +1,6 @@
+/* ========================= */
+/* FORMULARIOS ARTÍCULOS (editar, eliminar, etc.) */
+/* ========================= */
 .blog-form {
   max-width: 700px;
   margin: 40px auto;
@@ -10,20 +13,9 @@
   gap: 18px;
 }
 
-.blog-form h2 {
-  text-align: center;
-  margin-bottom: 15px;
-  font-size: 1.8rem;
-  color: #333;
-}
+.blog-form label { font-weight: 600; color: #444; }
 
-.blog-form label {
-  font-weight: 600;
-  color: #444;
-}
-
-.blog-form input[type="text"],
-.blog-form input[type="file"],
+.blog-form input,
 .blog-form textarea,
 .blog-form select {
   padding: 12px;
@@ -32,7 +24,6 @@
   font-size: 1rem;
   transition: border-color 0.3s ease;
 }
-
 .blog-form input:focus,
 .blog-form textarea:focus,
 .blog-form select:focus {
@@ -50,27 +41,61 @@
   cursor: pointer;
   transition: background 0.3s ease;
 }
-
-.blog-form button:hover {
-  background-color: #e67e22;
-}
-
-.blog-form .btn-cancel {
-  background-color: #6c757d;
-}
-
-.blog-form .btn-cancel:hover {
-  background-color: #5a6268;
-}
+.blog-form button:hover { background-color: #e67e22; }
 
 /* Responsivo */
 @media (max-width: 768px) {
-  .blog-form {
-    padding: 20px;
-  }
+  .blog-form { padding: 20px; }
+  .blog-form button, .btn-cancel { width: 100%; }
+}
 
-  .blog-form button,
-  .blog-form .btn-cancel {
-    width: 100%;
-  }
+/* ========================= */
+/* FORMULARIO CREAR ARTÍCULO */
+/* ========================= */
+.crear_articulo {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.crear_articulo label { font-weight: 600; color: #444; }
+
+.crear_articulo input,
+.crear_articulo textarea,
+.crear_articulo select {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+.crear_articulo input:focus,
+.crear_articulo textarea:focus,
+.crear_articulo select:focus {
+  border-color: #27ae60;
+  outline: none;
+}
+
+.crear_articulo button {
+  background-color: #27ae60;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.crear_articulo button:hover { background-color: #219150; }
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .crear_articulo { padding: 20px; }
+  .crear_articulo button, .btn-cancel { width: 100%; }
 }

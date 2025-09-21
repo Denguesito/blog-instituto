@@ -30,7 +30,7 @@ Editar artículo
     {% endif %}
     <div style="margin-top:18px; display:flex; justify-content:center; gap:12px;" >
         <button type="submit" class="btn btn-peligro" >Guardar cambios</button>
-        <a href="{% url 'blog:lista_articulos' %}" class="btn btn-cancel" >Cancelar</a>
+        <a href="{% url 'blog:detalle_articulo' articulo.pk %}" class="btn btn-cancel" >Cancelar</a>
     </div>
    
 </form>

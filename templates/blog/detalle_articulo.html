@@ -19,8 +19,10 @@ Detalle del Artículo
 
   {# Botones de edición/eliminación del artículo solo si puede editar #}
   {% if usuario_actual.is_authenticated and usuario_actual == articulo.autor or usuario_actual.is_staff or usuario_actual.is_superuser %}
-    <a href="{% url 'blog:editar_articulo' articulo.pk %}" class="btn-primary">Editar</a>
-    <a href="{% url 'blog:eliminar_articulo' articulo.pk %}" class="btn-danger">Eliminar</a>
+    <div class="action-buttons">
+      <a href="{% url 'blog:editar_articulo' articulo.pk %}" class="btn btn-primary">Editar</a>
+      <a href="{% url 'blog:eliminar_articulo' articulo.pk %}" class="btn btn-danger">Eliminar</a>
+    </div>
   {% endif %}
 
   <hr>
@@ -52,5 +54,10 @@ Detalle del Artículo
   {% else %}
     <p>Debes <a href="{% url 'usuarios:login' %}">iniciar sesión</a> para comentar.</p>
   {% endif %}
+
+  <!-- Botón volver a posts -->
+  <div class="action-buttons">
+    <a href="{% url 'blog:lista_articulos' %}" class="btn btn-secondary">Volver a posts</a>
+  </div>
 </section>
 {% endblock contenido %}

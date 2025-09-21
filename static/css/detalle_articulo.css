@@ -1,3 +1,6 @@
+/* ========================= */
+/* FORMULARIOS COMENTARIOS */
+/* ========================= */
 .comment-form {
   max-width: 600px;
   margin: 30px auto;
@@ -10,10 +13,7 @@
   gap: 15px;
 }
 
-.comment-form label {
-  font-weight: 600;
-  color: #444;
-}
+.comment-form label { font-weight: 600; color: #444; }
 
 .comment-form input[type="text"],
 .comment-form textarea {
@@ -23,7 +23,6 @@
   font-size: 1rem;
   transition: border-color 0.3s;
 }
-
 .comment-form input:focus,
 .comment-form textarea:focus {
   border-color: #007BFF;
@@ -40,29 +39,10 @@
   cursor: pointer;
   transition: background 0.3s ease;
 }
-
-.comment-form button:hover {
-  background-color: #0056b3;
-}
-
-.comment-form .btn-cancel {
-  background-color: #6c757d;
-}
-
-.comment-form .btn-cancel:hover {
-  background-color: #5a6268;
-}
+.comment-form button:hover { background-color: #0056b3; }
 
 /* Responsivo */
 @media(max-width: 768px){
-  .comment-form {
-    padding: 20px;
-  }
-
-  .comment-form button,
-  .comment-form .btn-cancel {
-    width: 100%;
-  }
+  .comment-form { padding: 20px; }
+  .comment-form button, .btn-cancel { width: 100%; }
 }
-
-
