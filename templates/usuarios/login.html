@@ -7,7 +7,17 @@
   <div class="card">
     <form method="post">
       {% csrf_token %}
-      {{ form.as_p }}
+
+      <p>
+        <label for="id_username">Usuario:</label><br>
+        {{ form.username }}
+      </p>
+
+      <p>
+        <label for="id_password">Contraseña:</label><br>
+        {{ form.password }}
+      </p>
+
       <div class="action-buttons">
         <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
       </div>

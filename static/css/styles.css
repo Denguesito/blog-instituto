@@ -138,6 +138,11 @@ header {
 }
 .btn-cancel:hover { background-color: #5a6268; }
 
+/* Espaciado global entre botones para evitar que queden pegados */
+.btn + .btn, .btn + .btn-cancel, .btn-cancel + .btn, .btn + a.btn, a.btn + .btn {
+  margin-left: 8px;
+}
+
 /* ========================= */
 /* NUEVAS VARIANTES DE BOTONES */
 /* ========================= */
@@ -248,14 +253,3 @@ footer {
 }
 .footer-social li a:hover { color: #ffcc00; }
 
-/* --------------------- */
-/* RESPONSIVO */
-/* --------------------- */
-@media (max-width: 768px) {
-    header { flex-direction: column; }
-    .nav-links { flex-direction: column; gap: 12px; margin-top: 15px; }
-    .banner { height: 45vh; }
-    .banner-content h1 { font-size: 2.2rem; }
-    .banner-content p { font-size: 1rem; }
-    .footer-container { flex-direction: column; text-align: center; }
-}

@@ -45,10 +45,3 @@
 .no-title {
   color: #c0392b;
 }
-
-/* Responsive */
-@media (max-width: 768px) {
-  .nosotros-app .dos-col {
-    flex-direction: column;
-  }
-}

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{% static 'css/detalle_articulo.css' %}" />
     <link rel="stylesheet" href="{% static 'css/usuarios.css' %}" />
     <link rel="stylesheet" href="{% static 'css/nosotros.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}" />
     <!-- 
     -->
     
@@ -25,6 +26,11 @@
           <img src="{% static 'img/Logo.png' %}" alt="Logo del instituto IES" />
         </a>
       </div>
+
+      <!-- Botón hamburguesa (visible en pantallas pequeñas) -->
+      <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <span class="hamburger"></span>
+      </button>
 
       <!--Menu-->
       <nav>
@@ -76,5 +82,62 @@
             </div>
         </div>
     </footer>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var btn = document.querySelector('.nav-toggle');
+        var header = document.querySelector('header');
+        var navLinks = document.querySelector('.nav-links');
+        if (!btn || !header || !navLinks) return;
+
+        // Crear overlay (oculto por defecto)
+        var overlay = document.createElement('div');
+        overlay.className = 'nav-overlay';
+        overlay.style.position = 'fixed';
+        overlay.style.inset = 0;
+        overlay.style.background = 'rgba(0,0,0,0.35)';
+        overlay.style.opacity = '0';
+        overlay.style.pointerEvents = 'none';
+        overlay.style.transition = 'opacity 160ms ease';
+        overlay.style.zIndex = 1100;
+        document.body.appendChild(overlay);
+
+        function openMenu() {
+          header.classList.add('nav-open');
+          btn.setAttribute('aria-expanded', 'true');
+          overlay.style.opacity = '1';
+          overlay.style.pointerEvents = 'auto';
+        }
+        function closeMenu() {
+          header.classList.remove('nav-open');
+          btn.setAttribute('aria-expanded', 'false');
+          overlay.style.opacity = '0';
+          overlay.style.pointerEvents = 'none';
+        }
+
+        btn.addEventListener('click', function (e) {
+          var isOpen = header.classList.contains('nav-open');
+          if (isOpen) closeMenu(); else openMenu();
+          e.stopPropagation();
+        });
+
+        overlay.addEventListener('click', function () { closeMenu(); });
+
+        // Cerrar menú al pulsar un enlace (útil en móviles)
+        Array.prototype.forEach.call(navLinks.querySelectorAll('a'), function (a) {
+          a.addEventListener('click', function () { closeMenu(); });
+        });
+
+        // Cerrar con tecla Escape
+        document.addEventListener('keydown', function (ev) {
+          if (ev.key === 'Escape' || ev.key === 'Esc') closeMenu();
+        });
+
+        // Si se hace resize y el menú estaba abierto, cerrar para evitar layout raro
+        window.addEventListener('resize', function () {
+          if (window.innerWidth > 900 && header.classList.contains('nav-open')) closeMenu();
+        });
+      });
+    </script>
   </body>
 </html>

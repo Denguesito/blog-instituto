@@ -94,8 +94,17 @@
 }
 .crear_articulo button:hover { background-color: #219150; }
 
-/* Responsivo */
-@media (max-width: 768px) {
-  .crear_articulo { padding: 20px; }
-  .crear_articulo button, .btn-cancel { width: 100%; }
+/* Mobile tweaks para formularios crear/editar */
+@media (max-width: 480px) {
+  .crear_articulo, .blog-form { max-width: 92%; margin: 18px auto; padding: 14px; }
+  .crear_articulo input, .crear_articulo textarea, .crear_articulo select,
+  .blog-form input, .blog-form textarea, .blog-form select { padding: 10px; font-size: 0.95rem; }
+  .crear_articulo button, .blog-form button { padding: 10px; width: 100%; }
 }
+@media (max-width: 400px) {
+  .crear_articulo, .blog-form { max-width: 96%; margin: 12px auto; padding: 12px; }
+  .crear_articulo label, .blog-form label { font-size: 0.95rem; }
+  .crear_articulo input, .crear_articulo textarea, .crear_articulo select { font-size: 0.95rem; }
+}
+
+

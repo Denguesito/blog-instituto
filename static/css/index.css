@@ -63,14 +63,3 @@
 /* Alternar orden */
 .feature-item2 { flex-direction: row-reverse; }
 
-/* --------------------- */
-/* RESPONSIVO */
-/* --------------------- */
-@media(max-width: 768px){
-    .feature-item,
-    .feature-item2 { flex-direction: column; text-align: center; }
-    .feature-text { width: 100%; }
-    .feature-item img,
-    .feature-item2 img { width: 100%; }
-    .page-title { font-size: 2rem; }
-}

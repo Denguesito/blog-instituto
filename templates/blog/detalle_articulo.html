@@ -16,7 +16,7 @@ Detalle del Artículo
     {% endfor %}
   </div>
   {% endif %}
-
+  <p class="visitas"> {{ articulo.visitas }} visitas</p>
   {# Botones de edición/eliminación del artículo solo si puede editar #}
   {% if usuario_actual.is_authenticated and usuario_actual == articulo.autor or usuario_actual.is_staff or usuario_actual.is_superuser %}
     <div class="action-buttons">
@@ -31,7 +31,7 @@ Detalle del Artículo
 
   {% for comentario in comentarios %}
     <div class="comment">
-      <strong>{{ comentario.autor }}</strong> dijo:
+      <strong>{{ comentario.autor }}</strong>:
       <p>{{ comentario.contenido }}</p>
       {% if usuario_actual == comentario.autor or usuario_actual.is_superuser or usuario_actual.is_staff %}
         <a href="{% url 'comentarios:editar_comentario' comentario.pk %}">Editar</a>

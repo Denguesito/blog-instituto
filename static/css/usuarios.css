@@ -33,6 +33,23 @@
   margin-bottom: 20px;
 }
 
+/* Clase para inputs añadida desde la plantilla de login */
+.input-text {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 1px solid #bdc3c7;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+/* En móviles un poco más de separación superior para que el header fijo no tape el formulario */
+@media (max-width: 480px) {
+  .usuarios-app { padding-top: 70px; }
+  .card { margin-top: 12px; }
+}
+
 .card form {
   display: flex;
   flex-direction: column;
@@ -119,16 +136,3 @@
   text-decoration: underline;
 }
 
-/* ========================= */
-/* RESPONSIVO */
-/* ========================= */
-@media (max-width: 500px) {
-  .card {
-    padding: 20px;
-  }
-
-  .perfil-card .avatar {
-    width: 100px;
-    height: 100px;
-  }
-}

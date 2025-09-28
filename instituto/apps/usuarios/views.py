@@ -34,10 +34,19 @@ class LoginUsuarioView(View):
 
     def get(self, request):
         form = AuthenticationForm()
+        # Personalizar label y atributos para la plantilla (clase, id, placeholder)
+        form.fields['username'].label = 'Usuario'
+        form.fields['username'].widget.attrs.update({'class': 'input-text', 'id': 'id_username', 'placeholder': 'Usuario'})
+        form.fields['password'].widget.attrs.update({'class': 'input-text', 'id': 'id_password', 'placeholder': 'Contraseña'})
         return render(request, self.template_name, {'form': form})
 
     def post(self, request):
         form = AuthenticationForm(data=request.POST)
+        # Mantener la personalización también cuando el formulario viene con datos
+        form.fields['username'].label = 'Usuario'
+        form.fields['username'].widget.attrs.update({'class': 'input-text', 'id': 'id_username', 'placeholder': 'Usuario'})
+        form.fields['password'].widget.attrs.update({'class': 'input-text', 'id': 'id_password', 'placeholder': 'Contraseña'})
+
         if form.is_valid():
             usuario = form.get_user()
             login(request, usuario)
@@ -45,6 +54,7 @@ class LoginUsuarioView(View):
             return redirect('index')
         else:
             messages.error(request, "Usuario o contraseña incorrectos")
+
         return render(request, self.template_name, {'form': form})
 
 # Perfil detalle

@@ -41,8 +41,15 @@
 }
 .comment-form button:hover { background-color: #0056b3; }
 
-/* Responsivo */
-@media(max-width: 768px){
-  .comment-form { padding: 20px; }
-  .comment-form button, .btn-cancel { width: 100%; }
+/* Mobile tweaks para detalle de artículo */
+@media (max-width: 480px) {
+  .comment-form { max-width: 94%; margin: 18px auto; padding: 14px; }
+  .comment-form input, .comment-form textarea { padding: 10px; font-size: 0.95rem; }
+  .comment-form button { padding: 10px; width: 100%; }
+  .carousel-container img { width: 220px; height: 140px; }
 }
+@media (max-width: 400px) {
+  .comment-form { max-width: 96%; margin: 12px auto; padding: 12px; }
+  .carousel-container img { width: 180px; height: 120px; }
+}
+
