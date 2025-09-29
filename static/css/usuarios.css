@@ -13,8 +13,10 @@
 .usuarios-app h2 {
   font-size: 2rem;
   margin-bottom: 25px;
-  color: #2c3e50;
+  color: #1E3A8A;
   text-align: center;
+  font-weight: 700;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
 }
 
 /* ========================= */
@@ -120,7 +122,7 @@
 /* LINKS DE REGISTRO/LOGIN */
 /* ========================= */
 .usuarios-app p {
-  margin-top: 20px;
+  margin: 20px 20px;
   font-size: 0.95rem;
   color: #7f8c8d;
   text-align: center;

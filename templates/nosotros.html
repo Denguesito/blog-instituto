@@ -1,126 +1,117 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block titulo %}
-Nosotros
-{% endblock titulo %}
-
+{% extends 'base.html' %} 
+{% load static %} 
+{% block titulo %} 
+Nosotros 
+{% endblock titulo %} 
 {% block contenido %}
-<section class="nosotros-app">
 
-  <h1 class="page-title">Sobre Nosotros</h1>
-  <p class="intro-text">
-    Bienvenidos al blog oficial de la carrera. Este espacio fue creado como parte de nuestro proyecto académico
-    con el objetivo de promover la participación, el aprendizaje y la difusión de los trabajos realizados en clase.
-    Aquí los estudiantes pueden expresarse, compartir artículos y construir una comunidad digital en torno a la carrera.
-  </p>
-
-  <!-- Equipo -->
-  <div class="feature">
-    <div class="feature-item">
-      <div class="feature-text">
-        <h2>Nuestro Equipo</h2>
-        <p>Actualmente, el blog está mantenido por:</p>
-        <ul>
-          <li><strong>Diego Iván Gómez</strong> – Back End</li>
-          <li><strong>Claudio Fabián Tomadín Alegre Montañes</strong> – Front End</li>
-        </ul>
-      </div>
+<!-- Equipo -->
+<div class="section-block">
+  <div class="section-card">
+    <div class="section-content">
+      <h2>Nuestro Equipo</h2>
+      <p>Actualmente, el blog está mantenido por:</p>
+      <ul>
+        <li><strong>Diego Iván Gómez</strong> – Back End</li>
+        <li><strong>Claudio Fabián Tomadín Alegre Montañes</strong> – Front End</li>
+      </ul>
     </div>
   </div>
+</div>
 
-  <!-- Perfiles -->
-  <div class="feature">
-    <div class="feature-item">
-      <div class="feature-text">
-        <h2>Perfiles de Usuario</h2>
-        <ul>
-          <li><strong>Visitante:</strong> explora y filtra artículos sin necesidad de registrarse.</li>
-          <li><strong>Estudiante:</strong> crea artículos, comenta y gestiona su perfil.</li>
-          <li><strong>Colaborador:</strong> modera artículos y comentarios, organiza categorías.</li>
-          <li><strong>Super Admin:</strong> reservado a docentes con control total.</li>
-        </ul>
-      </div>
+<!-- Perfiles -->
+<div class="section-block">
+  <div class="section-card">
+    <div class="section-content">
+      <h2>Perfiles de Usuario</h2>
+      <ul>
+        <li><strong>Visitante:</strong> explora y filtra artículos sin necesidad de registrarse.</li>
+        <li><strong>Estudiante:</strong> crea artículos, comenta y gestiona su perfil.</li>
+        <li><strong>Colaborador:</strong> modera artículos y comentarios, organiza categorías.</li>
+        <li><strong>Super Admin:</strong> reservado a docentes con control total.</li>
+      </ul>
     </div>
   </div>
+</div>
 
-  <!-- Cómo usar el blog -->
-  <div class="feature">
-    <div class="feature-item">
-      <div class="feature-text">
-        <h2>Cómo usar el blog</h2>
-        <p>Para mantener un espacio ordenado y útil para todos, recomendamos:</p>
-        <div class="dos-col">
-          <div>
-            <h3 class="ok-title">✅ Qué subir</h3>
-            <ul>
-              <li>Artículos relacionados con la carrera y proyectos.</li>
-              <li>Noticias, reflexiones o recursos de apoyo.</li>
-              <li>Trabajos prácticos e investigaciones.</li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="no-title">❌ Qué evitar</h3>
-            <ul>
-              <li>Contenido no relacionado con la carrera.</li>
-              <li>Publicaciones ofensivas o discriminatorias.</li>
-              <li>Información sin fuentes o poco confiable.</li>
-            </ul>
-          </div>
+<!-- Cómo usar el blog -->
+<div class="section-block">
+  <div class="section-card">
+    <div class="section-content">
+      <h2>Cómo usar el blog</h2>
+      <p>Para mantener un espacio ordenado y útil para todos, recomendamos:</p>
+      <div class="dos-col">
+        <div>
+          <h3 class="ok-title">✅ Qué subir</h3>
+          <ul>
+            <li>Artículos relacionados con la carrera y proyectos.</li>
+            <li>Noticias, reflexiones o recursos de apoyo.</li>
+            <li>Trabajos prácticos e investigaciones.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="no-title">❌ Qué evitar</h3>
+          <ul>
+            <li>Contenido no relacionado con la carrera.</li>
+            <li>Publicaciones ofensivas o discriminatorias.</li>
+            <li>Información sin fuentes o poco confiable.</li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Funcionalidades -->
-  <div class="feature">
-    <div class="feature-item">
-      <div class="feature-text">
-        <h2>Funcionalidades del Blog</h2>
-        <ul>
-          <li>Crear, editar y eliminar artículos propios.</li>
-          <li>Filtrar publicaciones por categorías y orden.</li>
-          <li>Comentar e interactuar con otros estudiantes.</li>
-          <li>Acceso seguro con registro y login.</li>
-        </ul>
+<!-- Funcionalidades -->
+<div class="section-block">
+  <div class="section-card">
+    <div class="section-content">
+      <h2>Funcionalidades del Blog</h2>
+      <ul>
+        <li>Crear, editar y eliminar artículos propios.</li>
+        <li>Filtrar publicaciones por categorías y orden.</li>
+        <li>Comentar e interactuar con otros estudiantes.</li>
+        <li>Acceso seguro con registro y login.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Secciones -->
+<div class="section-block">
+  <div class="section-card">
+    <div class="section-content">
+      <h2>Secciones Principales</h2>
+      <ul>
+        <li><strong>Inicio:</strong> últimos artículos publicados.</li>
+        <li><strong>Categorías:</strong> organización temática.</li>
+        <li><strong>Nosotros:</strong> propósito del blog y el equipo.</li>
+        <li><strong>Contacto:</strong> información de la institución y ubicación en Google Maps.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Contacto / Google Maps -->
+<div class="section-block">
+  <div class="section-card">
+    <div class="section-content">
+      <h2>Contacto</h2>
+      <p>Puedes encontrarnos en la institución:</p>
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d444.6335411252763!2d-60.04963930696815!3d-26.93304822200449!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9446bae098d8ae5d%3A0xe63e513b625a995e!2sEsc.N%20940%20Graciela%20C.%20Morales!5e0!3m2!1ses-419!2sar!4v1759115001846!5m2!1ses-419!2sar"
+          width="100%"
+          height="350"
+          style="border: 0; border-radius: 12px"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
       </div>
     </div>
   </div>
-
-  <!-- Secciones -->
-  <div class="feature">
-    <div class="feature-item">
-      <div class="feature-text">
-        <h2>Secciones Principales</h2>
-        <ul>
-          <li><strong>Inicio:</strong> últimos artículos publicados.</li>
-          <li><strong>Categorías:</strong> organización temática.</li>
-          <li><strong>Nosotros:</strong> propósito del blog y el equipo.</li>
-          <li><strong>Contacto:</strong> información de la institución y ubicación en Google Maps.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- Contacto / Google Maps -->
-  <div class="feature">
-    <div class="feature-item">
-      <div class="feature-text">
-        <h2>Contacto</h2>
-        <p>Puedes encontrarnos en la institución:</p>
-        <div class="map-container">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.1113204309443!2d-58.98616408440139!3d-27.45139368289639!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94450cf893c53d1f%3A0x6c30a6a3c9d045!2sInformatorio%20Chaco!5e0!3m2!1ses-419!2sar!4v1700000000000!5m2!1ses-419!2sar" 
-            width="100%" 
-            height="350" 
-            style="border:0; border-radius: 12px;" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</section>
+</div>
 {% endblock contenido %}
+
+

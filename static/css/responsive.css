@@ -1,14 +1,21 @@
 /* Responsive base: asegurar que la página funciona hasta 400px */
 
 /* Ajustes generales para evitar que el header fijo tape contenido */
-@media (max-width: 1200px) {
-	body { padding-top: 76px; }
-}
+
 @media (max-width: 768px) {
 	body { padding-top: 72px; }
 }
 @media (max-width: 480px) {
 	body { padding-top: 68px; }
+}
+
+@media (max-width: 480px) {
+    header {
+       padding: 10px 20px;
+        display: flex;
+        flex-direction: row;
+        text-align: center;     
+    }
 }
 
 /* NAV - Botón hamburguesa */

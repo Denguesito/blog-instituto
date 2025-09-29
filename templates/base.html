@@ -35,20 +35,20 @@
       <!--Menu-->
       <nav>
         <ul class="nav-links">
-          <li><a href="{% url 'blog:lista_articulos'%}">Posts</a></li>
-          <li><a href="{% url 'contacto' %}">Nosotros</a></li>
+          <li><a href="{% url 'blog:lista_articulos'%}" onclick=" ">Posts</a></li>
+          <li><a href="{% url 'contacto' %}" onclick="">Nosotros</a></li>
 
           {% if user.is_authenticated %}
               <li>
-                  <a href="{% url 'usuarios:perfil' %}" class="registros">Perfil de Usuario</a>
+                  <a href="{% url 'usuarios:perfil' %}" onclick="" class="registros">Perfil</a>
               </li>
               <li>
                   <!-- Manteniendo la class 'form_registros' y 'registros' -->
-                  <a href="{% url 'usuarios:logout' %}" class="form_registros registros">Cerrar sesión</a>
+                  <a href="{% url 'usuarios:logout' %}" onclick="" class="form_registros registros">Cerrar sesión</a>
               </li>
           {% else %}
-              <li><a href="{% url 'usuarios:login' %}" class="registros">Iniciar Sesión</a></li>
-              <li><a href="{% url 'usuarios:registro' %}" class="registros">Registrarme</a></li>
+              <li><a href="{% url 'usuarios:login' %}" onclick="" class="registros">Iniciar Sesión</a></li>
+              <li><a href="{% url 'usuarios:registro' %}" onclick="" class="registros">Registrarse</a></li>
           {% endif %}
         </ul>
       </nav>

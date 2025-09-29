@@ -1,3 +1,8 @@
+/*
+colo: #15e35af0; -1
+#ffd100f0
+*/
+
 /* ===================== */
 /* ESTILOS GLOBALES BASE */
 /* ===================== */
@@ -9,10 +14,18 @@
 }
 
 body {
-    background-color: #f8f9fa;
-    color: #333;
-    line-height: 1.6;
-    padding-top: 80px; /* 🔹 ajusta según la altura de tu header */
+ background: linear-gradient(
+    rgba(230, 240, 255, 0.9),
+    rgba(200, 220, 245, 0.9)
+  );
+  color: #333;
+  line-height: 1.6;
+  padding-top: 80px; /* ajusta según la altura de tu header */
+}
+
+main{
+  padding: 20px 20px;
+  margin: 20px auto;
 }
 
 /* --------------------- */
@@ -29,7 +42,7 @@ header {
     top: 0;             /* 🔹 lo pega arriba */
     left: 0;
     width: 100%;        /* 🔹 ocupa todo el ancho */
-    z-index: 1000;      /* 🔹 queda por encima del contenido */
+    z-index: 1200;      /* 🔹 queda por encima del contenido */
 }
 
 .logo img { height: 55px; width: auto; }
@@ -52,7 +65,7 @@ header {
 /* BANNER */
 /* --------------------- */
 .banner {
-    background: url("../img/banner.webp") no-repeat center/cover;
+    background: url("../img/banner-principal.jpg") no-repeat center/cover;
     color: white;
     height: 65vh;
     display: flex;
@@ -66,19 +79,22 @@ header {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.45);
+    background: rgba(0, 0, 0, 0.1);
 }
 .banner-content { position: relative; z-index: 2; }
 .banner-content h1 {
     font-size: 3.2rem;
     margin-bottom: 15px;
     font-weight: bold;
+    color: #c3c7d2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
 .banner-content p {
     font-size: 1.2rem;
     max-width: 700px;
     margin: 0 auto;
 }
+
 
 /* --------------------- */
 /* BOTONES GLOBALES */
@@ -127,8 +143,8 @@ header {
 .btn-cancel {
   background-color: #6c757d;
   color: #fff;
-  padding: 10px 18px;
-  border-radius: 6px;
+  padding: 8px 18px;
+  border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
   transition: background 0.3s ease;
@@ -165,10 +181,13 @@ header {
 /* ========================= */
 .action-buttons {
   margin: 25px 0;
+  display: flex;
   text-align: center;
+  flex-direction: row;
 }
 .action-buttons .btn {
-  margin: 0 8px; /* separación entre botones */
+  margin: 0 8px; 
+ ;
 }
 
 /* ========================= */
